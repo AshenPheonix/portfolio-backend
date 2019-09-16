@@ -5,10 +5,12 @@ import com.brandonporter.portfoliobackend.models.Project;
 import com.brandonporter.portfoliobackend.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service(value = "projectService")
 public class ProjectServiceImpl implements ProjectService {
     @Autowired
     private ProjectRepository projectRepo;
@@ -16,17 +18,17 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public Project save(Project project) {
         Project temp=new Project();
-        if(project.getBlog()==null){
+        if(project.getPost()==null){
             throw new ResourceNotFoundException("Not Enough Information");
         }else{
-            temp.setBlog(project.getBlog());
+            temp.setPost(project.getPost());
         }
         if(project.getStub()==null){
-            temp.setStub(project.getBlog().substring(0,100)+"...");
+            temp.setStub(project.getPost().substring(0,100)+"...");
         }else {
             temp.setStub(project.getStub());
         }
-        if(project.getTitle()!=null){
+        if(project.getTitle()==null){
             throw new ResourceNotFoundException("Not Enough Information");
         }else{
             temp.setTitle(project.getTitle());
@@ -57,18 +59,18 @@ public class ProjectServiceImpl implements ProjectService {
     public Project update(Project project, long id) {
         Project temp = projectRepo.findById(id).orElseThrow(()->new ResourceNotFoundException(Long.toString(id)));
 
-        if(project.getBlog()==null){
-            throw new ResourceNotFoundException("Not Enough Information");
+        if(project.getPost()==null){
+            throw new ResourceNotFoundException("No post");
         }else{
-            temp.setBlog(project.getBlog());
+            temp.setPost(project.getPost());
         }
         if(project.getStub()==null){
-            temp.setStub(project.getBlog().substring(0,100)+"...");
+            temp.setStub(project.getPost().substring(0,100)+"...");
         }else {
             temp.setStub(project.getStub());
         }
-        if(project.getTitle()!=null){
-            throw new ResourceNotFoundException("Not Enough Information");
+        if(project.getTitle()==null){
+            throw new ResourceNotFoundException("No title");
         }else{
             temp.setTitle(project.getTitle());
         }

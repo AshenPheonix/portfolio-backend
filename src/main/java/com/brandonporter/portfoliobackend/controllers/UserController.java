@@ -29,7 +29,7 @@ public class UserController
     private UserService userService;
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @GetMapping(value = "/users",
+    @GetMapping(value = "/all",
                 produces = {"application/json"})
     public ResponseEntity<?> listAllUsers(HttpServletRequest request)
     {
@@ -41,7 +41,7 @@ public class UserController
 
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @GetMapping(value = "/user/{userId}",
+    @GetMapping(value = "/{userId}",
                 produces = {"application/json"})
     public ResponseEntity<?> getUser(HttpServletRequest request,
                                      @PathVariable
@@ -110,5 +110,11 @@ public class UserController
 
         userService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/self")
+    public ResponseEntity<?> getSelf(){
+        User ret = userService.getSelf();
+        return new ResponseEntity<>(ret,HttpStatus.OK);
     }
 }

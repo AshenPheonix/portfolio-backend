@@ -14,15 +14,15 @@ public class Blog extends Auditable{
     @Column(nullable = false)
     private String stub;
     @Column(nullable = false)
-    private String blog;
+    private String post;
 
     public Blog() {
     }
 
-    public Blog(String title, String stub, String blog) {
+    public Blog(String title, String stub, String post) {
         this.title = title;
         this.stub = stub;
-        this.blog = blog;
+        this.post = post;
     }
 
     public long getId() {
@@ -49,11 +49,16 @@ public class Blog extends Auditable{
         this.stub = stub;
     }
 
-    public String getBlog() {
-        return blog;
+    public String getPost() {
+        return post;
     }
 
-    public void setBlog(String blog) {
-        this.blog = blog;
+    public void setPost(String post) {
+        this.post = post;
+    }
+
+    @Override
+    public String toString() {
+        return this.getTitle()+ "stub:" + this.getStub()+ "Post:" +this.getPost();
     }
 }

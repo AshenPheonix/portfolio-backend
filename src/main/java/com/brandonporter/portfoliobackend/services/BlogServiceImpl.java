@@ -19,18 +19,18 @@ public class BlogServiceImpl implements BlogService{
     @Override
     public Blog save(Blog blog) {
         Blog temp = new Blog();
-        if(blog.getBlog()==null){
-            throw new ResourceNotFoundException("Not Enough Information");
+        if(blog.getPost()==null){
+            throw new ResourceNotFoundException("Missing Post");
         }else{
-            temp.setBlog(blog.getBlog());
+            temp.setPost(blog.getPost());
         }
         if(blog.getStub()==null){
-            temp.setStub(blog.getBlog().substring(0,100)+"...");
+            temp.setStub(blog.getPost().substring(0,100)+"...");
         }else {
             temp.setStub(blog.getStub());
         }
-        if(blog.getTitle()!=null){
-            throw new ResourceNotFoundException("Not Enough Information");
+        if(blog.getTitle()==null){
+            throw new ResourceNotFoundException("Missing Title");
         }else{
             temp.setTitle(blog.getTitle());
         }
@@ -59,17 +59,17 @@ public class BlogServiceImpl implements BlogService{
     @Override
     public Blog update(Blog blog, long id) {
         Blog temp = blogRepo.findById(id).orElseThrow(()->new ResourceNotFoundException(Long.toString(id)));
-        if(blog.getBlog()==null){
+        if(blog.getPost()==null){
             throw new ResourceNotFoundException("Not Enough Information");
         }else{
-            temp.setBlog(blog.getBlog());
+            temp.setPost(blog.getPost());
         }
         if(blog.getStub()==null){
-            temp.setStub(blog.getBlog().substring(0,100)+"...");
+            temp.setStub(blog.getPost().substring(0,100)+"...");
         }else {
             temp.setStub(blog.getStub());
         }
-        if(blog.getTitle()!=null){
+        if(blog.getTitle()==null){
             throw new ResourceNotFoundException("Not Enough Information");
         }else{
             temp.setTitle(blog.getTitle());

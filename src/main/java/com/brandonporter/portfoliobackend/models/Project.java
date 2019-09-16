@@ -16,7 +16,7 @@ public class Project extends Auditable{
     private String stub;
 
     @Column(nullable = false)
-    private String blog;
+    private String post;
 
     public Project() {
     }
@@ -24,7 +24,7 @@ public class Project extends Auditable{
     public Project(String title, String stub, String blog) {
         this.title = title;
         this.stub = stub;
-        this.blog = blog;
+        this.post = blog;
     }
 
     public long getId() {
@@ -51,11 +51,11 @@ public class Project extends Auditable{
         this.stub = stub;
     }
 
-    public String getBlog() {
-        return blog;
+    public String getPost() {
+        return post;
     }
 
-    public void setBlog(String blog) {
-        this.blog = blog;
+    public void setPost(String post) {
+        this.post = post;
     }
 }

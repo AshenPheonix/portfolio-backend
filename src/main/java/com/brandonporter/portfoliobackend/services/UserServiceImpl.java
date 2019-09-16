@@ -51,6 +51,8 @@ public class UserServiceImpl implements UserDetailsService, UserService
         return list;
     }
 
+
+
     @Override
     public void delete(long id)
     {
@@ -127,5 +129,12 @@ public class UserServiceImpl implements UserDetailsService, UserService
             throw new ResourceNotFoundException(authentication.getName());
         }
 
+    }
+
+    @Override
+    public User getSelf() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User temp = userrepos.findByUsername(authentication.getName());
+        return temp;
     }
 }
