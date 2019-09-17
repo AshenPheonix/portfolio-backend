@@ -13,7 +13,8 @@ public class Blog extends Auditable{
     private String title;
     @Column(nullable = false)
     private String stub;
-    @Column(nullable = false)
+    @Lob
+    @Column(nullable = false,columnDefinition = "text")
     private String post;
 
     public Blog() {

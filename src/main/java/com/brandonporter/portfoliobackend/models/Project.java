@@ -15,7 +15,8 @@ public class Project extends Auditable{
     @Column(nullable = false)
     private String stub;
 
-    @Column(nullable = false)
+    @Lob
+    @Column(nullable = false,columnDefinition = "text")
     private String post;
 
     public Project() {
