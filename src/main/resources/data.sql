@@ -1,7 +1,5 @@
 delete from userroles;
 delete from roles;
-delete from blogs;
-delete from projects;
 delete from users;
 
 insert into roles (roleid,name) values (1,'user'),(2,'admin');

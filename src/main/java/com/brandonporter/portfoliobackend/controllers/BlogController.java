@@ -43,4 +43,16 @@ public class BlogController {
         Blog temp = blogService.save(blog);
         return new ResponseEntity<>(temp,HttpStatus.CREATED);
     }
+
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PutMapping(value = "/{id}",consumes = {"application/json"}, produces = {"application/json"})
+    public ResponseEntity<?> UpdateBlog(@Valid @RequestBody Blog blog, @PathVariable long id){
+        Blog temp = new Blog(
+                blog.getTitle(),
+                blog.getStub(),
+                blog.getPost()
+        );
+        Blog ret = blogService.update(temp,id);
+        return new ResponseEntity<>(ret,HttpStatus.OK);
+    }
 }
